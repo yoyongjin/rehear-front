@@ -1,34 +1,41 @@
 import { Fragment } from "react";
+// import { createGlobalStyle } from "styled-components";
+// import reset from "styled-reset";
 
 import { Route, Routes } from "react-router-dom";
 
-import MainNavigation from "./components/nav/MainNav";
+import MainNavigation from "./components/Layout/MainNav";
+import Footer from "./components/Layout/Footer";
 
 import AuthPage from "./pages/AuthPage";
 import MainPage from "./pages/MainPage";
-import AdBoardPage from "./pages/navigation/AdBoardPage";
-import Experiences from "./pages/navigation/Experiences";
-import Information from "./pages/navigation/Information";
-import QnABoardPage from "./pages/navigation/QnABoardPage";
-import RehearStory from "./pages/navigation/RehearStory";
-import TalkPage from "./pages/navigation/TalkPage";
+import RehearStory from "./pages/RehearStory";
+// import AdBoardPage from "./pages/navigation/AdBoardPage";
+// import Experiences from "./pages/navigation/Experiences";
+// import Information from "./pages/navigation/Information";
+// import QnABoardPage from "./pages/navigation/QnABoardPage";
+// import TalkPage from "./pages/navigation/TalkPage";
+// const GlobalStyle = createGlobalStyle`
+//   ${reset}
+// `;
 
-function App() {
+const App = () => {
   return (
     <Fragment>
+      {/* <GlobalStyle /> */}
+
       <MainNavigation />
+
       <Routes>
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/stories" element={<RehearStory />} />
-        <Route path="/experiences" element={<Experiences />} />
-        <Route path="/information" element={<Information />} />
-        <Route path="/qna-board" element={<QnABoardPage />} />
-        <Route path="/ad-board" element={<AdBoardPage />} />
-        <Route path="/talk" element={<TalkPage />} />
+        <Route path="/posts" element={<RehearStory />} />
       </Routes>
+
+      <Footer />
     </Fragment>
   );
-}
+};
 
 export default App;

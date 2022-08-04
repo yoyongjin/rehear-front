@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+import LoginBtn from "../components/UI/Auth/LoginBtn";
+
 const AuthPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState("false");
 
@@ -85,15 +87,6 @@ const AuthInput = styled.input`
   border-radius: 5px;
 `;
 
-const LoginBtn = styled.button`
-  width: 100%;
-  height: 1.75rem;
-  border: none;
-  border-radius: 5px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
 const AuthToggleBtn = styled.button`
   width: 60%;
   background-color: #fff;

@@ -15,7 +15,7 @@ const DropDown = () => {
 };
 
 const DropDownContainer = styled.div`
-  background-color: lightblue;
+  /* background-color: lightblue; */
 
   &:hover {
     color: white;
@@ -33,5 +33,9 @@ const DropDownNavContainer = styled.div`
 
 const DropDownLink = styled(Link)`
   display: block;
+  text-decoration: none;
+  &:hover {
+    color: white;
+  }
 `;
 export default DropDown;
