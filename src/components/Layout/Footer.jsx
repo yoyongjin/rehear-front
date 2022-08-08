@@ -17,9 +17,7 @@ const FooterContainer = styled.footer`
   background-color: #bbb;
   padding: 5px 10px;
   height: 150px;
-  margin-top: 160px;
-  position: relative;
-  transform: translateY(-100%);
+  margin-top: 15px;
 `;
 
 const FooterInnerContainer = styled.div`

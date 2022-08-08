@@ -4,17 +4,17 @@ import styled from "styled-components";
 import LoginBtn from "../components/UI/Auth/LoginBtn";
 
 const AuthPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState("false");
+  const [isLogIn, setIsLogIn] = useState("false");
 
   const authToggle = (event) => {
     event.preventDefault();
-    setIsLoggedIn((prevState) => !prevState);
+    setIsLogIn((prevState) => !prevState);
   };
 
   return (
     <LoginFormContainer>
       <Logo alt="logo" src="img/logo_rehear.png" />
-      <h2>{isLoggedIn ? "로그인" : "회원가입"}</h2>
+      <h2>{isLogIn ? "로그인" : "회원가입"}</h2>
       <LoginForm>
         <InputContainer>
           {/* <Label>아이디</Label> */}
@@ -24,15 +24,17 @@ const AuthPage = () => {
           {/* <Label>비밀번호</Label> */}
           <AuthInput type="text" placeholder="비밀번호를 입력하세요" />
         </InputContainer>
-        <LoginBtn>{isLoggedIn ? "로그인" : "회원가입"}</LoginBtn>
+        <LoginBtn>{isLogIn ? "로그인" : "회원가입"}</LoginBtn>
 
         <AuthToggleBtn onClick={authToggle}>
-          {isLoggedIn ? "새 계정 만들기" : "기존 아이디로 로그인"}
+          {isLogIn ? "새 계정 만들기" : "기존 아이디로 로그인"}
         </AuthToggleBtn>
-        <APILogin>
-          <LoginBtn>카카오톡으로 로그인하기</LoginBtn>
-          <LoginBtn>Google로 로그인하기</LoginBtn>
-        </APILogin>
+        {isLogIn && (
+          <APILogin>
+            <LoginBtn>카카오톡으로 로그인하기</LoginBtn>
+            <LoginBtn>Google로 로그인하기</LoginBtn>
+          </APILogin>
+        )}
       </LoginForm>
     </LoginFormContainer>
   );

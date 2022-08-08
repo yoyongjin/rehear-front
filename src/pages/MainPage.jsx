@@ -25,10 +25,9 @@ const MainPage = () => {
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  /* justify-content: space-evenly; */
+  gap: 1rem;
   background-color: darkblue;
-  height: 1000px;
-  min-width: 1000px;
 `;
 
 // const Carousel = styled.div`
@@ -40,10 +39,10 @@ const MainContainer = styled.div`
 //   background-color: lightyellow;
 // `;
 const WeekHotArticle = styled.article`
-  width: 100%;
+  width: inherit;
   height: auto;
-  background-color: white;
-  margin: 1rem;
+  background-color: #772222;
+  /* margin: 1rem; */
   padding: 1rem;
 `;
 
