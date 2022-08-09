@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Search from "../components/UI/Posting/Search";
 
 const PostsPage = () => {
   return (
@@ -14,6 +15,8 @@ const PostsPage = () => {
           <InquireBtn>질문하기</InquireBtn>
         </Link>
       </QnABanner>
+
+      <Search />
     </PostingContainer>
   );
 };
