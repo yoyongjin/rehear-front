@@ -11,11 +11,7 @@ const MainPage = () => {
         <WeekHotPosts />
       </WeekHotArticle>
       <WeekHotArticle>
-        <MainTitle>최근에 올라온 질문</MainTitle>
-        <WeekHotPosts />
-      </WeekHotArticle>
-      <WeekHotArticle>
-        <MainTitle>여러분! 이 지원사업 확인 하셨나요?</MainTitle>
+        <MainTitle>최근 게시글</MainTitle>
         <WeekHotPosts />
       </WeekHotArticle>
     </MainContainer>

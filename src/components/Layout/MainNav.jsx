@@ -41,7 +41,7 @@ const NavTextContainer = styled.div`
   height: 2rem;
   text-align: center;
   padding: 1rem;
-  background-color: purple;
+  /* background-color: purple; */
 `;
 const Logo = styled.img`
   width: 250px;

@@ -1,30 +1,102 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 import LoginBtn from "../components/UI/Auth/LoginBtn";
 
 const AuthPage = () => {
-  const [isLogIn, setIsLogIn] = useState("false");
+  const userEmailInputRef = useRef();
+  const userPasswordInputRef = useRef();
+
+  const [isLogIn, setIsLogIn] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const authToggle = (event) => {
     event.preventDefault();
     setIsLogIn((prevState) => !prevState);
   };
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const enteredEmail = userEmailInputRef.current.value;
+    const enteredPassword = userPasswordInputRef.current.value;
+
+    // Email/PW validation
+
+    setIsLoading(true);
+
+    let url;
+
+    if (isLogIn) {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCb_vrL62sZCnBKfiQnr61shhRbJRmLtf4";
+    } else {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCb_vrL62sZCnBKfiQnr61shhRbJRmLtf4";
+    }
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        setIsLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          res.json().then((data) => {
+            let errorMessage = data.error.message;
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   return (
     <LoginFormContainer>
       <Logo alt="logo" src="img/logo_rehear.png" />
       <h2>{isLogIn ? "로그인" : "회원가입"}</h2>
-      <LoginForm>
+      <LoginForm onSubmit={submitHandler}>
         <InputContainer>
           {/* <Label>아이디</Label> */}
-          <AuthInput type="text" placeholder="아이디를 입력하세요" />
+          <AuthInput
+            ref={userEmailInputRef}
+            type="text"
+            placeholder="아이디를 입력하세요"
+            required
+          />
         </InputContainer>
         <InputContainer>
           {/* <Label>비밀번호</Label> */}
-          <AuthInput type="text" placeholder="비밀번호를 입력하세요" />
+          <AuthInput
+            ref={userPasswordInputRef}
+            type="text"
+            placeholder="비밀번호를 입력하세요(6자리 이상)"
+            required
+          />
         </InputContainer>
-        <LoginBtn>{isLogIn ? "로그인" : "회원가입"}</LoginBtn>
+
+        {isLoading ? (
+          <p>등록중...</p>
+        ) : (
+          <LoginBtn>{isLogIn ? "로그인" : "회원가입"}</LoginBtn>
+        )}
 
         <AuthToggleBtn onClick={authToggle}>
           {isLogIn ? "새 계정 만들기" : "기존 아이디로 로그인"}
@@ -47,6 +119,7 @@ const LoginFormContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  width: 100%;
   height: 100vh;
 `;
 const Logo = styled.img`

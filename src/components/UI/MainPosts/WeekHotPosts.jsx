@@ -5,6 +5,7 @@ import PostCard from "./PostCards";
 
 const WeekHotPosts = () => {
   const [hotTitle, setHotTitle] = useState([]);
+  const [hotContent, setHotContent] = useState([]);
 
   useEffect(() => {
     const fetchHotTitle = async () => {
@@ -13,11 +14,19 @@ const WeekHotPosts = () => {
     };
     fetchHotTitle();
   }, []);
+  useEffect(() => {
+    const fetchHotContent = async () => {
+      const getContent = await axios.get("http://localhost:5000/posts");
+      setHotContent(getContent.data[0].content);
+    };
+    fetchHotContent();
+  }, []);
+
   return (
     <PostSectionsContainer>
       <PostCard>
         <MainPostTitle>{hotTitle}</MainPostTitle>
-        <p>내용1</p>
+        <p>{hotContent}</p>
       </PostCard>
       <PostCard>
         <MainPostTitle>포스트1</MainPostTitle>

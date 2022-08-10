@@ -21,7 +21,7 @@ const SearchContainer = styled.div`
   display: flex;
   height: 150px;
   align-items: center;
-  background-color: #fff;
+  /* background-color: #fff; */
   margin: 30px 0;
 `;
 
