@@ -1,7 +1,14 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
+import DropDown from "../UI/Auth/DropDown";
 
 const MainNavigation = () => {
+  const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
+
   return (
     <NavContainer>
       <Link to="/">
@@ -15,7 +22,8 @@ const MainNavigation = () => {
           <MainNavLink to="/posts">자유 게시판</MainNavLink>
         </NavTextContainer>
       </MainRouteContainer>
-      <AuthBtn to="/auth">로그인</AuthBtn>
+
+      {!isLoggedIn ? <AuthBtn to="/auth">로그인</AuthBtn> : <DropDown />}
     </NavContainer>
   );
 };

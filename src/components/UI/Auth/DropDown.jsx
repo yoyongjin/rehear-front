@@ -1,21 +1,25 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../../store/auth-context";
 
 const DropDown = () => {
+  const authCtx = useContext(AuthContext);
+
   return (
     <DropDownContainer>
-      <span>커뮤니티</span>
+      <span>{authCtx.renderedId}</span>
       <DropDownNavContainer>
-        <DropDownLink to="/qna-board">질문 게시판</DropDownLink>
-        <DropDownLink to="/ad-board">홍보 게시판</DropDownLink>
-        <DropDownLink to="/talk">실시간 왁자지껄</DropDownLink>
+        <DropDownLink to="/qna-board">마이페이지</DropDownLink>
+        <DropDownLink to="/ad-board">프로필 설정</DropDownLink>
+        <DropDownLink to="/talk">로그아웃</DropDownLink>
       </DropDownNavContainer>
     </DropDownContainer>
   );
 };
 
 const DropDownContainer = styled.div`
-  /* background-color: lightblue; */
+  background-color: lightblue;
 
   &:hover {
     color: white;

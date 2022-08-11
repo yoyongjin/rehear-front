@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import styled from "styled-components";
 
 import LoginBtn from "../components/UI/Auth/LoginBtn";
+import AuthContext from "../store/auth-context";
 
 const AuthPage = () => {
   const userEmailInputRef = useRef();
   const userPasswordInputRef = useRef();
+
+  const authCtx = useContext(AuthContext);
 
   const [isLogIn, setIsLogIn] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,6 +65,8 @@ const AuthPage = () => {
       })
       .then((data) => {
         console.log(data);
+        authCtx.login(data.idToken);
+        authCtx.getUserId(data.email);
       })
       .catch((err) => {
         alert(err.message);
