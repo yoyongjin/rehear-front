@@ -53,8 +53,12 @@ const RadioBtn = () => {
 
 const RadioContainer = styled.div`
   display: flex;
-  width: 600px;
+  width: 85%;
   justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 20px;
+  /* background-color: #ccc; */
+  font-size: 16pt;
 `;
 
 const ButtonContainer = styled.div``;

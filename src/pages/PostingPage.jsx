@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Line from "../components/Layout/Line";
 import Categories from "../components/UI/Posting/Categories";
 import RadioBtn from "../components/UI/Posting/RadioBtn";
+import pencil from "../assets/pencil.png";
 
 const PostingPage = () => {
   const postTitleInputRef = useRef("");
@@ -24,65 +25,125 @@ const PostingPage = () => {
   `;
 
   return (
-    <PostingContainer>
-      <FormContainer>
-        <form onSubmit={onSubmitHandler}>
-          <LineContainer>
-            <label htmlFor="title">글제목</label>
-            <input
-              ref={postTitleInputRef}
-              type="text"
-              id="title"
-              placeholder="글제목"
-            />
-          </LineContainer>
-          <Line />
-          <LineContainer>
-            <label>창업기간</label>
-            <RadioBtn />
-          </LineContainer>
+    <FormContainer>
+      <form onSubmit={onSubmitHandler}>
+        <LineContainer>
+          <label htmlFor="title">
+            <FormTitle>글 제목</FormTitle>
+          </label>
+          <StyledInput
+            ref={postTitleInputRef}
+            type="text"
+            id="title"
+            placeholder="글제목"
+          />
+        </LineContainer>
+        <Line />
+        <LineContainer>
+          <label>
+            <FormTitle>창업 기간</FormTitle>
+          </label>
+          <RadioBtn />
+        </LineContainer>
 
-          <Line />
-          <LineContainer>
-            <label>카테고리</label>
-            <Categories />
-          </LineContainer>
-          <Line />
-          <LineContainer>
-            <label>#태그</label>
-            <input />
-          </LineContainer>
-          <Line />
-
+        <Line />
+        <LineContainer>
+          <label>
+            <FormTitle>카테고리</FormTitle>
+          </label>
+          <Categories />
+        </LineContainer>
+        <Line />
+        <LineContainer>
+          <label>
+            <FormTitle>#태그</FormTitle>
+          </label>
+          <StyledInput />
+        </LineContainer>
+        <Line />
+        <LineContainer>
+          <label>
+            <FormTitle>내용</FormTitle>
+          </label>
           <PostingTextArea placeholder={postingContentPlaceholder} />
-          <button type="submit">완료</button>
-        </form>
-      </FormContainer>
-    </PostingContainer>
+        </LineContainer>
+        <BtnContainer>
+          <SubmitBtn primary type="submit">
+            <SubmitPencilImg src={pencil} />
+            완료
+          </SubmitBtn>
+        </BtnContainer>
+      </form>
+    </FormContainer>
   );
 };
 
-const PostingContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: lightgreen;
-  align-items: center;
-  margin: 45px 15px;
-
-  /* width: 90%; */
-`;
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
+  /* background-color: lightcoral; */
+  height: 800px;
+  padding: 50px;
 `;
 const LineContainer = styled.div`
   display: flex;
+  justify-content: space-between;
+  font-size: 15pt;
+  font-family: sans-serif;
+  padding: 15px 0;
+`;
+
+const FormTitle = styled.span`
+  font-size: 15pt;
+  font-family: sans-serif;
+  font-weight: 600;
+  margin-right: 20px;
+`;
+
+const StyledInput = styled.input`
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  width: 85%;
+  height: 40px;
+  padding-left: 10px;
 `;
 
 const PostingTextArea = styled.textarea`
-  width: 100%;
+  width: 86.2%;
   min-height: 300px;
   resize: none;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 12pt;
 `;
+
+const BtnContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const SubmitBtn = styled.button`
+  border: none;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em 0.35em 1em;
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: #42837b;
+  color: white;
+`;
+
+const SubmitPencilImg = styled.img`
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  position: relative;
+  top: 2px;
+  left: -1px;
+`;
+
 export default PostingPage;

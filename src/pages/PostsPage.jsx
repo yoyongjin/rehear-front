@@ -1,9 +1,11 @@
-import React from "react";
+// import {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Search from "../components/UI/Posting/Search";
 
 const PostsPage = () => {
+  // const [postList, setPostList] = useState([]);
+
   return (
     <PostingContainer>
       <QnABanner>
@@ -28,7 +30,7 @@ const PostingContainer = styled.div`
 `;
 
 const QnABanner = styled.div`
-  background-color: #ccc;
+  background-color: #cbe8dc;
   display: flex;
   justify-content: space-between;
   align-items: center;

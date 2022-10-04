@@ -7,11 +7,11 @@ const PostCard = (props) => {
 
 const CardContainer = styled.div`
   background-color: white;
-  border: 3px solid #cbe8dc;
-  border-radius: 7px;
-  width: 200px;
-  height: 300px;
-  padding: 10px;
+  border: 2px solid #cbe8dc;
+  /* border-radius: 7px; */
+  width: 250px;
+  height: 360px;
+  padding: 5px 10px;
 `;
 
 export default PostCard;

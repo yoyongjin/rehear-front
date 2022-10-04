@@ -1,10 +1,10 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+// import { createGlobalStyle } from "styled-components";
+// import reset from "styled-reset";
 
 import { Route, Routes } from "react-router-dom";
 
 import MainNavigation from "./components/Layout/MainNav";
-import Footer from "./components/Layout/Footer";
+// import Footer from "./components/Layout/Footer";
 
 import AuthPage from "./pages/AuthPage";
 import MainPage from "./pages/MainPage";
@@ -17,9 +17,9 @@ import PostingPage from "./pages/PostingPage";
 // import Information from "./pages/navigation/Information";
 // import QnABoardPage from "./pages/navigation/QnABoardPage";
 // import TalkPage from "./pages/navigation/TalkPage";
-const GlobalStyle = createGlobalStyle`
-  ${reset}
-`;
+// const GlobalStyle = createGlobalStyle`
+//   ${reset}
+// `;
 
 const App = () => {
   return (
@@ -35,15 +35,14 @@ const App = () => {
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/posting" element={<PostingPage />} />
       </Routes>
-
-      <Footer />
     </AppContainer>
   );
 };
 
 const AppContainer = styled.div`
-  min-width: 1040px;
-  background-color: #fffbbb;
+  min-width: 1300px;
+  /* background-color: #fffbbb; */
+  height: 100vh;
 `;
 
 export default App;

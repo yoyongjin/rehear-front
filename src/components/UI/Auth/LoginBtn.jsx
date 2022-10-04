@@ -6,10 +6,14 @@ const LoginBtn = (props) => {
 };
 
 const LoginBtnContainer = styled.button`
-  width: 100%;
-  height: 1.75rem;
+  width: 360px;
+  height: 2.5rem;
   border: none;
   border-radius: 5px;
+  background-color: #42837b;
+  color: #fff;
+  font-size: 12pt;
+  /* font-weight: bold; */
   &:hover {
     cursor: pointer;
   }

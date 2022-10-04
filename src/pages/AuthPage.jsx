@@ -1,8 +1,11 @@
+import axios from "axios";
 import React, { useState, useRef, useContext } from "react";
+// import { useEffect } from "react";
 import styled from "styled-components";
 
 import LoginBtn from "../components/UI/Auth/LoginBtn";
 import AuthContext from "../store/auth-context";
+// import DuplicatedModal from "../components/UI/Auth/DuplicatedModal";
 
 const AuthPage = () => {
   const userEmailInputRef = useRef();
@@ -13,9 +16,19 @@ const AuthPage = () => {
   const [isLogIn, setIsLogIn] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const authToggle = (event) => {
-    event.preventDefault();
+  const authToggle = (e) => {
+    e.preventDefault();
     setIsLogIn((prevState) => !prevState);
+  };
+
+  const DuplicatedCheck = (e) => {
+    e.preventDefault();
+
+    const emailCheck = axios
+      .get(
+        `http://118.67.142.90:8080/duplicated/email/${userEmailInputRef.current.value}`
+      )
+      .then((res) => console.log(emailCheck));
   };
 
   const submitHandler = (event) => {
@@ -31,11 +44,9 @@ const AuthPage = () => {
     let url;
 
     if (isLogIn) {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCb_vrL62sZCnBKfiQnr61shhRbJRmLtf4";
+      url = "http://118.67.142.90:8080/login";
     } else {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCb_vrL62sZCnBKfiQnr61shhRbJRmLtf4";
+      url = "http://118.67.142.90:8080/join";
     }
     fetch(url, {
       method: "POST",
@@ -80,21 +91,33 @@ const AuthPage = () => {
       <LoginForm onSubmit={submitHandler}>
         <InputContainer>
           {/* <Label>아이디</Label> */}
-          <AuthInput
-            ref={userEmailInputRef}
-            type="text"
-            placeholder="아이디를 입력하세요"
-            required
-          />
-        </InputContainer>
-        <InputContainer>
-          {/* <Label>비밀번호</Label> */}
+          <CheckingInputContainer>
+            <AuthInput
+              ref={userEmailInputRef}
+              type="text"
+              placeholder="아이디를 입력하세요"
+              required
+            />
+            {!isLogIn && (
+              <EmailDuplicateCheckBtn onClick={DuplicatedCheck}>
+                중복확인
+              </EmailDuplicateCheckBtn>
+            )}
+          </CheckingInputContainer>
+          {/* <DuplicatedModal>사용가능한 이메일입니다.</DuplicatedModal> */}
           <AuthInput
             ref={userPasswordInputRef}
-            type="text"
-            placeholder="비밀번호를 입력하세요(6자리 이상)"
+            type="password"
+            placeholder="비밀번호를 입력하세요"
             required
           />
+          {!isLogIn && (
+            <AuthInput
+              placeholder="비밀번호를 한번 더 입력하세요"
+              type="password"
+              required
+            />
+          )}
         </InputContainer>
 
         {isLoading ? (
@@ -120,7 +143,9 @@ const AuthPage = () => {
 const LoginFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #ccc;
+  background-color: #fff;
+  border: 1px solid #cbe8dc;
+
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
@@ -134,10 +159,12 @@ const Logo = styled.img`
 `;
 const LoginForm = styled.form`
   display: flex;
+  border-radius: 15px;
+
   flex-direction: column;
-  /* background-color: lightyellow; */
-  width: 350px;
-  padding: 20px 40px;
+  background-color: #cbe8dc;
+  width: 346px;
+  padding: 40px 60px;
 
   align-items: center;
   justify-content: space-between;
@@ -146,6 +173,7 @@ const LoginForm = styled.form`
 `;
 const InputContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 0.5rem;
@@ -158,13 +186,30 @@ const InputContainer = styled.div`
 //   width: 4rem;
 //   /* background-color: red; */
 // `;
+const CheckingInputContainer = styled.div`
+  display: flex;
+  width: 364px;
+  /* 100%로 하면 왜 쫌 더 작게나오지? */
+  gap: 5px;
+  justify-content: space-between;
+`;
 
 const AuthInput = styled.input`
   height: 40px;
   width: 100%;
   padding-left: 0.75rem;
-  border: none;
+  border: 2px solid #cbe8dc;
   border-radius: 5px;
+`;
+
+const EmailDuplicateCheckBtn = styled.button`
+  width: 100px;
+  border: none;
+  padding: 0;
+  border-radius: 7px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const AuthToggleBtn = styled.button`
@@ -187,6 +232,7 @@ const APILogin = styled.div`
   width: inherit;
   padding: 5px;
   margin-top: 3rem;
+  border: 2px solid #cbe8dc;
 `;
 
 export default AuthPage;

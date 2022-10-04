@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Footer from "../components/Layout/Footer";
 import WeekHotPosts from "../components/UI/MainPosts/WeekHotPosts";
 
 const MainPage = () => {
@@ -14,6 +15,7 @@ const MainPage = () => {
         <MainTitle>최근 게시글</MainTitle>
         <WeekHotPosts />
       </WeekHotArticle>
+      <Footer />
     </MainContainer>
   );
 };
@@ -23,7 +25,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   /* justify-content: space-evenly; */
   gap: 1rem;
-  background-color: darkblue;
+  /* background-color: darkblue; */
 `;
 
 // const Carousel = styled.div`
@@ -37,12 +39,13 @@ const MainContainer = styled.div`
 const WeekHotArticle = styled.article`
   width: inherit;
   height: auto;
-  background-color: #772222;
+  /* background-color: #772222; */
   /* margin: 1rem; */
-  padding: 1rem;
+  padding: 1rem 75px;
 `;
 
 const MainTitle = styled.h1`
+  font-size: 36pt;
   color: #42837b;
 `;
 

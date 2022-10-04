@@ -15,9 +15,12 @@ const Footer = () => {
 
 const FooterContainer = styled.footer`
   background-color: #bbb;
-  padding: 5px 10px;
-  height: 150px;
-  margin-top: 15px;
+  padding: 5px 20px;
+  height: 200px;
+  margin-top: 50px;
+  padding-top: 30px;
+  font-size: 14pt;
+  width: 100%;
 `;
 
 const FooterInnerContainer = styled.div`
